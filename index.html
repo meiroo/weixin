@@ -1,90 +1,46 @@
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
 
-
-<title>Layouts – Pure</title>
-
-
-<link rel="stylesheet" href="pure-min.css">
-
-
-
-
-  
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="/combo/1.17.30?/css/main-grid-old-ie.css&/css/main-old-ie.css&/css/layouts.css&/css/rainbow/baby-blue.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="/combo/1.17.30?/css/main-grid.css&amp;/css/main.css&amp;/css/layouts.css&amp;/css/rainbow/baby-blue.css">
-    <!--<![endif]-->
-  
-
-
-
-    
-<!--[if lt IE 9]>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
-<![endif]-->
-
-
-
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/jquery.hammer.js"></script>
+    <script src="js/movement.js"></script>
+    <script src="js/tweenmax.min.js"></script>
 </head>
 <body>
-
     <div id="layout">
-        <a href="#menu" id="menuLink" class="menu-link">
-                <span></span>
-        </a>
-
-    <div id="main">
-
-        <div class="hero">
-            <div class="hero-titles">
-                <img class="logo" src="img/logo_pure@2x.png" alt="Pure">
-                <h2 class="hero-tagline">A set of small, responsive CSS modules that you can use in every web project.</h2>
-            </div>
-
-            <div class="hero-cta">
-                <div class="is-code-full">
-                  <pre class="code code-wrap" data-language="html"><code class="rainbow"><span class="support tag"><span class="support tag">&lt;</span><span class="support tag-name">link</span></span> <span class="support attribute">rel</span><span class="support operator">=</span><span class="string quote">"</span><span class="string value">stylesheet</span><span class="string quote">"</span> <span class="support attribute">href</span><span class="support operator">=</span><span class="string quote">"</span><span class="string value">http://yui.yahooapis.com/pure/0.5.0/pure-min.css</span><span class="string quote">"</span><span class="support tag close">&gt;</span></code></pre>
+        <div id="main">
+            <div id="content">
+                <div class="pure-g">
+                    <div class="pure-u-1-3"><p>content content content content content content content content content content content content content content content content content content content content content </p></div>
+                    <div class="pure-u-1-5">
+                        <img class="pure-img" src="img/intro_p4.png">
+                    </div>
+                    <div class="pure-u-1-3"><p>abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc </p></div>
                 </div>
 
-                <p>
-                    <a class="button-cta pure-button" href="/start/">Get Started</a>
-                    <a class="button-secondary pure-button" href="https://github.com/yahoo/pure/">View on GitHub</a>
-                </p>
+                <div >
+
+                    <div class="moveable">
+                        <div class="imglist">
+                            <img class="img1 moveimg" src="img/intro_p4.png">
+                            <img class="img2 moveimg" src="img/intro_p4.png">
+                            <img class="img2 moveimg" src="img/intro_p4.png">
+                            <img class="img2 moveimg" src="img/intro_p4.png">
+                            <img class="img2 moveimg" src="img/intro_p4.png">
+                            <img class="img2 moveimg" src="img/intro_p4.png">
+                        </div>
+                    </div>
+    
+
+                </div>
+
             </div>
         </div>
-      
     </div>
-
-
-    <div class="footer">
-        <div class="legal pure-g">
-            <div class="pure-u-1 u-sm-1-2">
-                <p class="legal-license">
-                    This site is built with &lt;3 using Pure v0.5.0<br>
-                    All code on this site is licensed under the <a href="https://github.com/yahoo/pure-site/blob/master/LICENSE.md">Yahoo BSD License</a> unless stated.
-                </p>
-            </div>
-
-            <div class="pure-u-1 u-sm-1-2">
-                <ul class="legal-links">
-                    <li><a href="https://github.com/yahoo/pure/">GitHub Project</a></li>
-                    <li><a href="https://hackerone.com/yahoo/">Security Contact Info</a></li>
-                </ul>
-
-                <p class="legal-copyright">
-                    © 2014 Yahoo! Inc. All rights reserved.
-                </p>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-  
-
-</body></html>
+</body>
+</html>

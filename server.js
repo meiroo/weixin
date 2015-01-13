@@ -4,7 +4,7 @@ var http = require('http'),
     mime = require('./mime');
     path = require('path');
 
-var port = 3000;
+var port = 4000;
 
 function processStatic(request, response){
     //get path from request's url
@@ -54,4 +54,4 @@ var server =http.createServer();
 server.listen(port);
 server.on('request',processQuery);
 
-console.log('Server running at http://127.0.0.1:3000/');
+console.log('Server running at http://127.0.0.1:4000/');
