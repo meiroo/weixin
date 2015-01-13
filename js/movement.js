@@ -6,26 +6,24 @@ function Page(str){
 
 	this.hammertime.on('swipeleft', function(ev) {
 	   pan -= 320;
-	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.3);
-	   console.log(pan);
+	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
 	});
 
 	this.hammertime.on('swiperight', function(ev) {
 		pan += 320;
 	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
-		console.log(pan);
 	});
 
 	this.showAni = function(){
 		this.ele.show();
-		TweenMax.staggerFromTo("#"+str, 1, {rotation:30,opacity:0.5,y:0},{rotation:0, y:-300,opacity:1}, 0);
-		TweenMax.staggerFromTo("#"+str+" .pure-img", 1, {rotation:0},{rotation:360,repeat:-1,repeatDelay:0.5,ease:Back.easeOut},0.3);
-		TweenMax.staggerFromTo("#"+str+" .pure-u-1-3", 1, {scale:0},{scale:1,ease:Bounce.easeOut},0.0);
+		TweenMax.fromTo("#"+str, 1, {rotation:30,y:0},{rotation:0, y:-300});
+		TweenMax.fromTo("#"+str+" .pure-img", 1, {rotation:0},{rotation:360,repeat:-1,repeatDelay:0.5,ease:Back.easeOut});
+		TweenMax.fromTo("#"+str+" .pure-u-1-3", 1, {scale:0},{scale:1,ease:Bounce.easeOut});
 		
 	}
 
 	this.hideAni = function(onComplete){
-		TweenMax.staggerFromTo("#"+str, 1, {rotation:0,opacity:1,y:-300},{rotation:-30, y:-1000,opacity:0.5}, 0,onComplete);
+		TweenMax.fromTo("#"+str, 1, {rotation:0,y:-300},{rotation:-30, y:-1000,onComplete:onComplete});
 	}
 
 }
@@ -45,8 +43,10 @@ function Scene(){
 		pages[currentindex].showAni();
 
 
+
+
 		this.hammertime = new Hammer(document.getElementById('main'));
-		this.hammertime.on('panup', function(ev) {
+		this.hammertime.on('swipeup', function(ev) {
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
 		   		currentindex = ++currentindex % 3;
@@ -54,10 +54,11 @@ function Scene(){
 		   });
 		   
 		});
+		this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
 
 		this.songzhufu = new Hammer(document.getElementById('songzhufu'));
 		this.songzhufu.on('tap', function(ev) {
-			self.hammertime.off('panup');
+			self.hammertime.off('swipeup');
 			pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
 		   		new Page('page4').showAni();
