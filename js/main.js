@@ -17,111 +17,34 @@ var browser={
      }(),
      language:(navigator.browserLanguage || navigator.language).toLowerCase()
 }
-	
-
-function Page(str){
-	this.ele = $('#'+str);
-	var pan = 0;
-	
-
-	this.swipeleft =  function(ev) {
-	   if(Anime.isTweening("#"+str+" .imglist img"))return;
-	   pan -= 320;
-	   Anime.Run("#"+str+" .imglist img",Anime.Scene.PositionTo(pan));
-	}
-
-	this.swiperight = function(ev) {
-		if(Anime.isTweening("#"+str+" .imglist img"))return;
-		pan += 320;
-	    Anime.Run("#"+str+" .imglist img",Anime.Scene.PositionTo(pan));
-	}
-
-	this.showAni = function(onComplete){
-		this.ele.show();
-		Anime.Run('#'+str,Anime.Scene.DefaultShow());
-		Anime.Run("#"+str+" .pure-img", Anime.Scene.RotationBack());		
-	}
-
-	this.hideAni = function(onComplete){
-		Anime.Run('#'+str,Anime.Scene.DefaultHide(),onComplete);
-	}
-
-}
-
-
-
-function Scene(){
-	this.init = function(){
-		var self = this;
-		this.content = $('.page');
-		$('.page').hide();
-		var page1 = new Page('page1');
-		var page2 = new Page('page2');
-		var page3 = new Page('page3');
-		var pages = [page1,page2,page3];
-		var currentindex = 0;
-		pages[currentindex].showAni();
-
-		var bindEvent = 'swipeup';
-	
-		
-		$('body').hammer().bind("swipeleft", function(ev) {
-		   ev.preventDefault();
-		   pages[currentindex].swipeleft();
-		});
-		$('body').hammer().bind("swiperight", function(ev) {
-		   ev.preventDefault();
-		   pages[currentindex].swiperight();
-		});
-		$('body').hammer().bind("swipeleft", function(ev) {
-		   ev.preventDefault();
-		   pages[currentindex].swipeleft();
-		});
-		$('body').hammer().bind("swiperight", function(ev) {
-		   ev.preventDefault();
-		   pages[currentindex].swiperight();
-		});
-		//alert(navigator.userAgent);
-		//alert(navigator.userAgent.indexOf('Windows Phone'));
-		//alert(browser.versions.wp);
-		if(browser.versions.wp){
-			//WP8
-			bindEvent = 'panup';
-		}else{
-			$('body').data("hammer").get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
-		}
-
-		$('body').hammer().bind(bindEvent, function(ev) {
-		   ev.preventDefault();
-		   pages[currentindex].hideAni(function(){
-		   		pages[currentindex].ele.hide();
-		   		currentindex = ++currentindex % 3;
-		   		pages[currentindex].showAni();
-		   });
-		   
-		});
-
-
-		
-
-
-		this.songzhufu = new Hammer(document.getElementById('songzhufu'));
-		this.songzhufu.on('tap', function(ev) {
-			$('body').hammer().off('swipeup panup'); 
-			pages[currentindex].hideAni(function(){
-		   		pages[currentindex].ele.hide();
-		   		new Page('page4').showAni();
-		   });
-		});
-		$('.hongbao-form').submit(function(event) {
-			event.preventDefault();
-			alert('submit!');
-		})
-	}
-}
-
 
 $(function() {
-    var mm = new Scene();
-	mm.init();
+	//alert(document.body.clientHeight);
+	//alert(window.screen.width);
+	var height = window.screen.height;
+	$('#page1 .pure-img').addClass("hatch");
+	//$('.page').width(height/16*9);
+	//$('.page').width(800);
+	//transform: scale(0.47808764940239);
+	//alert($('.page').css('width'));
+	var scale = 1.0;
+	var yscale = 1.0;
+	var xoff = 0;
+	var yoff = 0;
+	if(window.screen.width < 640){
+		scale = window.screen.width / 640.0;
+		
+		
+	}
+
+	if(window.screen.height < 1012){
+		yscale = window.screen.height / 1012.0;
+	}
+
+	alert(window.screen.width + ' ' + window.screen.height);
+	if(scale > yscale)
+		scale = yscale;
+	yoff = (1 - scale) / 2 * 1012;
+	xoff = (1 - scale) / 2 * 640;
+	$('.page').css('transform','scale('+scale+') '+ 'translate( -'+ xoff/scale +'px,-'+ yoff/scale + 'px)');
 });
