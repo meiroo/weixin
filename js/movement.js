@@ -6,24 +6,24 @@ function Page(str){
 
 	this.hammertime.on('swipeleft', function(ev) {
 	   pan -= 320;
-	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
+	   TweenMax.staggerTo("#"+str+" .imglist img", 0.5, {x:pan}, 0.0);
 	});
 
 	this.hammertime.on('swiperight', function(ev) {
 		pan += 320;
-	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
+	   TweenMax.staggerTo("#"+str+" .imglist img", 0.5, {x:pan}, 0.0);
 	});
 
 	this.showAni = function(){
 		this.ele.show();
-		TweenMax.fromTo("#"+str, 1, {rotation:30,y:0},{rotation:0, y:-300});
-		TweenMax.fromTo("#"+str+" .pure-img", 1, {rotation:0},{rotation:360,repeat:-1,repeatDelay:0.5,ease:Back.easeOut});
-		TweenMax.fromTo("#"+str+" .pure-u-1-3", 1, {scale:0},{scale:1,ease:Bounce.easeOut});
+		TweenMax.fromTo("#"+str, 0.5, {rotation:30,y:300},{rotation:0, y:0});
+		TweenMax.fromTo("#"+str+" .pure-img", 0.5, {rotation:0},{rotation:360,repeat:-1,repeatDelay:0.5,ease:Back.easeOut});
+		TweenMax.fromTo("#"+str+" .pure-u-1-3", 0.5, {scale:0},{scale:1,ease:Bounce.easeOut});
 		
 	}
 
 	this.hideAni = function(onComplete){
-		TweenMax.fromTo("#"+str, 1, {rotation:0,y:-300},{rotation:-30, y:-1000,onComplete:onComplete});
+		TweenMax.fromTo("#"+str, 0.5, {rotation:0,y:-300},{rotation:-30, y:-1000,onComplete:onComplete});
 	}
 
 }
@@ -45,8 +45,8 @@ function Scene(){
 
 
 
-		this.hammertime = new Hammer(document.getElementById('main'));
-		this.hammertime.on('swipeup', function(ev) {
+		$('#main').hammer({enable:true,direction: Hammer.DIRECTION_ALL}).bind("panup swipeup", function(ev) {
+		   ev.preventDefault();
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
 		   		currentindex = ++currentindex % 3;
@@ -54,17 +54,16 @@ function Scene(){
 		   });
 		   
 		});
-		this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
 
-		this.songzhufu = new Hammer(document.getElementById('songzhufu'));
-		this.songzhufu.on('tap', function(ev) {
-			self.hammertime.off('swipeup');
+
+		$('#songzhufu').hammer().bind("tap", function(ev) {
+			$('#main').hammer({enable:false });
 			pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
 		   		new Page('page4').showAni();
 		   });
 		});
-		$('.pure-form').submit(function(event) {
+		$('.hongbao-form').submit(function(event) {
 			event.preventDefault();
 			alert('submit!');
 		})
