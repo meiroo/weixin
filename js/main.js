@@ -73,6 +73,14 @@ function Scene(){
 		   ev.preventDefault();
 		   pages[currentindex].swiperight();
 		});
+		$('body').hammer().bind("swipeleft", function(ev) {
+		   ev.preventDefault();
+		   pages[currentindex].swipeleft();
+		});
+		$('body').hammer().bind("swiperight", function(ev) {
+		   ev.preventDefault();
+		   pages[currentindex].swiperight();
+		});
 		//alert(navigator.userAgent);
 		//alert(navigator.userAgent.indexOf('Windows Phone'));
 		//alert(browser.versions.wp);
