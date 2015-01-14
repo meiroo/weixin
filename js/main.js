@@ -19,6 +19,15 @@ var browser={
 }
 
 $(function() {
+	var mySwiper = new Swiper('.swiper-container',{
+        //pagination: '.pagination',
+        paginationClickable: true,
+        mode: 'vertical',
+        calculateHeight: true,
+        speed:750, 
+        cssWidthAndHeight:true,
+      });
+
 	//alert(document.body.clientHeight);
 	//alert(window.screen.width);
 	var height = window.screen.height;
@@ -41,7 +50,7 @@ $(function() {
 		yscale = window.screen.height / 1012.0;
 	}
 
-	alert(window.screen.width + ' ' + window.screen.height);
+	//alert(window.screen.width + ' ' + window.screen.height);
 	if(scale > yscale)
 		scale = yscale;
 	yoff = (1 - scale) / 2 * 1012;
