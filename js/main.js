@@ -19,14 +19,22 @@ var browser={
 }
 
 var pageAni = {};
+pageAni.onPage0 = function(){
+	$('#page0 .h1').addClass('bigEntrance');
+	$('#page0 .drop-cap').addClass('slideRight');
+	$('#page0 .three-fourths').addClass('slideLeft');
+	$('#page0 button').addClass("slideRight");
+	
+	
+}
 pageAni.onPage1 = function(){
 	$('#page1 .pure-img').addClass("pulse");
-	$('#page1 .moveimg').addClass("hatch");
-	$('#page1 button').addClass("slideRight");
+	$('#page1 .moveimg').addClass("hatch");	
+	$('#page1 video').addClass('pullUp');
 }
 pageAni.onPage2 = function(){
-	$('#page2 .pure-img').addClass("pulse");
-	$('#page2 .moveimg').removeClass("pullUp").addClass("pullUp");
+	$('#page2 .pure-img').addClass("bounce");
+	$('#page2 .moveimg').addClass("pullUp");
 }
 pageAni.onPage3 = function(){
 	$('#page3 .pure-img').addClass("pulse");
@@ -34,6 +42,7 @@ pageAni.onPage3 = function(){
 }
 pageAni.onPage4 = function(){
 	$('#page4 button').addClass('slideExpandUp');
+	$('#page4 textarea').addClass('bounce');
 }
 
 $(function() {
@@ -45,10 +54,13 @@ $(function() {
         speed:750, 
         cssWidthAndHeight:true,
         onInit:function(swiper){
-        	pageAni.onPage1();
+        	pageAni.onPage0();
         },
         onSlideChangeEnd:function(swiper,direction){
-        	var index = swiper.activeIndex+1;
+        	var index = swiper.activeIndex;
+        	if(index ==1){
+        		pageAni.onPage1();
+        	}
         	if(index ==2)
         		pageAni.onPage2();
         	if(index ==3)

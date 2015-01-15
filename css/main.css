@@ -52,11 +52,21 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);";
 }
 
+.page .pageContent{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#page0{
+    background: #bfb4bc;
+}
 #page1{
     background: #b3d4fc;
 }
 #page2{
     background: #b3d4aa;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 3em;
 }
 #page3{
     background: #b3d4fc;
